@@ -1,0 +1,54 @@
+{
+  "private": false,
+  "version": "1.0.0",
+  "name": "react-signature",
+  "keywords": [
+    "react",
+    "native",
+    "signature",
+    "pad"
+  ],
+  "author": "Matthew Oaxaca",
+  "license": "MIT",
+  "description": "Signature pad component for both react web & react native",
+  "main": "index.js",
+  "typings": "./index.d.ts",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "coveralls": "nyc yarn test && nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint --fix --ext .js, index.js src",
+    "test": "jest test",
+    "version:patch": "npm --no-git-tag-version version patch",
+    "version:minor": "npm --no-git-tag-version version minor",
+    "version:major": "npm --no-git-tag-version version major"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.3.0",
+    "nyc": "^11.4.1",
+    "regenerator-runtime": "^0.11.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/moaxaca/react-signature.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moaxaca/react-signature/issues"
+  },
+  "directories": {
+    "test": "test"
+  }
+}

@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "9"
+  - "8"
+  - "7"
+  - "6"
+  - "4"
+  - "iojs"
+env:
+  global:
+    - TEST=true
+  matrix:
+    - REACT=0.14
+    - REACT=15
+    - REACT=16
+sudo: false
+install:
+  - yarn install
+script:
+  - yarn lint
+  - yarn test
