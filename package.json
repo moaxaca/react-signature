@@ -10,7 +10,7 @@
   ],
   "author": "Matthew Oaxaca",
   "license": "MIT",
-  "description": "Signature pad component for both react web & react native",
+  "description": "Signature pad component for both react & react native",
   "main": "index.js",
   "typings": "./index.d.ts",
   "engines": {
