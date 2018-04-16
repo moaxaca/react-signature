@@ -17,29 +17,34 @@
     "node": ">=7.6.0"
   },
   "scripts": {
+    "build": "react-scripts-ts build",
     "coveralls": "nyc yarn test && nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint --fix --ext .js, index.js src",
+    "lint": "tslint . --fix",
     "test": "jest test",
-    "version:patch": "npm --no-git-tag-version version patch",
-    "version:minor": "npm --no-git-tag-version version minor",
-    "version:major": "npm --no-git-tag-version version major"
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
+    "dev": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/react": "*",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.2.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "awesome-typescript-loader": "^4.0.1",
     "coveralls": "^3.0.0",
-    "eslint": "^4.17.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1",
     "jest": "^22.3.0",
     "nyc": "^11.4.1",
-    "regenerator-runtime": "^0.11.1"
+    "react-docgen-typescript": "^1.2.6",
+    "react-scripts-ts": "^2.13.0",
+    "react-styleguidist": "^6.2.7",
+    "source-map-loader": "^0.2.3",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.7.0",
+    "typescript": "^2.7.2",
+    "webpack": "^3.4.1"
   },
   "repository": {
     "type": "git",
@@ -49,6 +54,7 @@
     "url": "https://github.com/moaxaca/react-signature/issues"
   },
   "directories": {
+    "src": "src",
     "test": "test"
   }
 }
