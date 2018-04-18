@@ -5,8 +5,6 @@ coverage/
 
 .idea/
 node_modules/
+.rpt2_cache/
 .env
 yarn-error.log
-
-dist/
-!dist/.keep

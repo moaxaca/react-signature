@@ -11,20 +11,22 @@
   "author": "Matthew Oaxaca",
   "license": "MIT",
   "description": "Signature pad component for react",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "typings": "./index.d.ts",
   "engines": {
     "node": ">=7.6.0"
   },
   "scripts": {
-    "build": "react-scripts-ts build",
+    "build": "rollup -c",
+    "build:watch": "rollup -cw",
     "coveralls": "nyc yarn test && nyc report --reporter=text-lcov | coveralls",
+    "dev": "styleguidist server",
     "lint": "tslint . --fix",
     "test": "jest test",
+    "test:watch": "jest test --watchAll",
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "version:major": "npm version major",
-    "dev": "styleguidist server",
     "styleguide:build": "styleguidist build"
   },
   "peerDependencies": {
@@ -43,6 +45,9 @@
     "react-dom": "^16.3.2",
     "react-scripts-ts": "^2.13.0",
     "react-styleguidist": "^6.2.7",
+    "rollup": "^0.58.0",
+    "rollup-plugin-typescript2": "^0.13.0",
+    "rollup-watch": "^4.3.1",
     "source-map-loader": "^0.2.3",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.7.0",
@@ -61,10 +66,16 @@
     "test": "test"
   },
   "jest": {
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
     },
-    "testMatch": ["<rootDir>/test/**/*test.+(ts|tsx|js)"]
+    "testMatch": [
+      "<rootDir>/test/**/*test.+(ts|tsx|js)"
+    ]
   }
 }
