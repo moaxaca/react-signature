@@ -6,6 +6,7 @@ coverage/
 .idea/
 node_modules/
 .env
+yarn-error.log
 
 dist/
 !dist/.keep

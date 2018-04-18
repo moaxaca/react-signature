@@ -10,7 +10,7 @@
   ],
   "author": "Matthew Oaxaca",
   "license": "MIT",
-  "description": "Signature pad component for both react & react native",
+  "description": "Signature pad component for react",
   "main": "index.js",
   "typings": "./index.d.ts",
   "engines": {
@@ -27,17 +27,20 @@
     "dev": "styleguidist server",
     "styleguide:build": "styleguidist build"
   },
-  "dependencies": {
-    "@types/react": "*",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+  "peerDependencies": {
+    "react": "^16.3.2"
   },
+  "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/react": "^16.3.11",
     "awesome-typescript-loader": "^4.0.1",
     "coveralls": "^3.0.0",
     "jest": "^22.3.0",
     "nyc": "^11.4.1",
+    "react": "^16.3.2",
     "react-docgen-typescript": "^1.2.6",
+    "react-dom": "^16.3.2",
     "react-scripts-ts": "^2.13.0",
     "react-styleguidist": "^6.2.7",
     "source-map-loader": "^0.2.3",
@@ -56,5 +59,12 @@
   "directories": {
     "src": "src",
     "test": "test"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": ["<rootDir>/test/**/*test.+(ts|tsx|js)"]
   }
 }
