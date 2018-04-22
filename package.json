@@ -11,11 +11,8 @@
   "author": "Matthew Oaxaca",
   "license": "MIT",
   "description": "Signature pad component for react",
-  "main": "dist/bundle.js",
+  "main": "lib/bundle.js",
   "typings": "./index.d.ts",
-  "engines": {
-    "node": ">=7.6.0"
-  },
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -cw",

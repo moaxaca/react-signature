@@ -4,7 +4,7 @@ coverage/
 .coveralls.yml
 
 .idea/
-node_modules/
 .rpt2_cache/
-.env
+node_modules/
+lib/
 yarn-error.log

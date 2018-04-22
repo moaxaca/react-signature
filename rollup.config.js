@@ -3,7 +3,7 @@ import typescript from 'rollup-plugin-typescript2'
 
 export default {
   entry: './src/index.ts',
-  dest: './dist/bundle.js',
+  dest: './lib/bundle.js',
   format: 'es',
   plugins: [
     resolve(),

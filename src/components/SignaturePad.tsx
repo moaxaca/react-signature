@@ -1,22 +1,13 @@
 import * as React from "react";
 import { ElasticCanvas } from "./ElasticCanvas";
+import { Stroke } from "../types/Stroke";
 
 enum States {
-  SignatureEngaged,
+  Engaged,
   Idle,
 }
 
-export interface Point {
-  x: number,
-  y: number,
-}
-
-export interface Stroke {
-  points: Array<Point>,
-}
-
 export interface SignaturePadProps {
-  style: any,
   height: number,
   width: number,
 }
@@ -29,7 +20,6 @@ export interface SignaturePadState {
 
 export class SignaturePad extends React.Component<SignaturePadProps, SignaturePadState> {
   private canvas: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext2D;
 
   constructor(props: SignaturePadProps){
     super(props);
@@ -41,7 +31,6 @@ export class SignaturePad extends React.Component<SignaturePadProps, SignaturePa
   }
 
   componentDidMount() {
-    this.ctx = this.canvas.getContext("2d");
     this.canvas.addEventListener('mousemove', this.captureMotion.bind(this));
     this.canvas.addEventListener('mousedown', this.captureEngage.bind(this));
     this.canvas.addEventListener('mouseup', this.captureRelease.bind(this));
@@ -53,22 +42,39 @@ export class SignaturePad extends React.Component<SignaturePadProps, SignaturePa
     this.canvas.removeEventListener('mouseup', this.captureRelease.bind(this));
   }
 
-  getSignature() {
+  toDataURL() {
+    if (this.state.strokes.length === 0) {
+      return null;
+    }
     return this.canvas.toDataURL();
   }
 
-  private captureEngage(event: MouseEvent) {
+  clear() {
+    this.setState(
+      {
+        strokes: [],
+        strokeIndex: 0,
+      },
+      () => {
+        const { canvas } = this;
+        const ctx = this.canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    );
+  }
+
+  private captureEngage() {
     this.setState({
-      signingState: States.SignatureEngaged,
       strokes: this.state.strokes.concat([{
         points: [],
       }]),
       strokeIndex: this.state.strokes.length,
+      signingState: States.Engaged,
     });
   }
 
   private captureMotion(event: MouseEvent) {
-    if (this.state.signingState === States.SignatureEngaged) {
+    if (this.state.signingState === States.Engaged) {
       const { strokeIndex } = this.state;
       const strokes: Array<Stroke> = [...this.state.strokes];
       strokes[strokeIndex].points.push({
@@ -76,11 +82,11 @@ export class SignaturePad extends React.Component<SignaturePadProps, SignaturePa
         y: event.clientY - 15,
       });
       this.setState({ strokes });
-      this.drawSignature();
+      this.draw();
     }
   }
 
-  private captureRelease(event: MouseEvent) {
+  private captureRelease() {
     this.setState({
       signingState: States.Idle,
     });
@@ -89,18 +95,19 @@ export class SignaturePad extends React.Component<SignaturePadProps, SignaturePa
   private resize(height: number, width: number) {
     this.canvas.height = height;
     this.canvas.width = width;
-    this.drawSignature();
+    this.draw();
   }
 
-  private drawSignature() {
+  private draw() {
     for (let stroke of this.state.strokes) {
       this.drawStroke(stroke);
     }
   }
 
   private drawStroke(stroke: Stroke) {
-    const { ctx } = this;
+    const ctx = this.canvas.getContext("2d");
     let lastPoint;
+    ctx.beginPath();
     for (let point of stroke.points) {
       ctx.moveTo(point.x,point.y);
       if (lastPoint) {
